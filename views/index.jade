@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div
+    ul
+      if docs.length === 0
+        li No documents.
+      else
+      for doc in docs
+        li= doc.name
+          a(href='/docs/' + doc.name) Download
+  div
+    form(method="post", action="/docs", enctype='multipart/form-data')
+      label(for='upload') 
+        h2 Upload a File
+      input(name='upload', type="file")
+      input(type='submit')
